@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -43,14 +44,17 @@ dependencies {
 
     //Dagger
     def dagger_version = "2.40.2"
+    
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     //Lifecycle
-    implementation 'androidx.lifecycle:lifecycle-common:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    def lifecycle_version = "2.4.1"
+
+    implementation "androidx.lifecycle:lifecycle-common:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
@@ -63,6 +67,19 @@ dependencies {
 
     //Cicerone
     implementation 'com.github.terrakok:cicerone:7.1'
+
+    //FastAdapter
+    def fast_adapter_version = "5.6.0"
+
+    implementation "com.mikepenz:fastadapter:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:$fast_adapter_version"
+
+    //Room
+    def room_version = "2.4.2"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Tests
     testImplementation 'junit:junit:4.13.2'

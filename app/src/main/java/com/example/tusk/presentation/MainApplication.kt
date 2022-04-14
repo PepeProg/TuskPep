@@ -9,7 +9,9 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        dagger = DaggerAppComponent.create()
+        dagger = DaggerAppComponent.builder()
+            .context(applicationContext)
+            .build()
     }
 
     companion object {

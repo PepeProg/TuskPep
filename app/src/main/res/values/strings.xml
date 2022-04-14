@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Tusk</string>
+    <string name="add_task_menu">Add task</string>
 </resources>

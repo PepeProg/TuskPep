@@ -19,6 +19,7 @@ class MainActivity : FragmentActivity() {
     @Inject
     lateinit var router: Router
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
