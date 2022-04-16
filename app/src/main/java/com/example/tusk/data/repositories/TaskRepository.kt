@@ -21,4 +21,8 @@ class TaskRepository @Inject constructor(
             taskDtoMapper.mapToEntity(taskDto)
         }
     }
+
+    suspend fun deleteAllTasks() {
+        taskDbDataStore.deleteAllTasks()
+    }
 }

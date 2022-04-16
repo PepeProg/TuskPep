@@ -8,6 +8,7 @@ class TaskDtoMapper @Inject constructor(){
 
     fun mapToDto(taskEntity: TaskEntity): TaskDto {
         return TaskDto(
+            id = taskEntity.id,
             title = taskEntity.title,
             startDate = taskEntity.startDate,
             endDate = taskEntity.endDate,
@@ -16,6 +17,7 @@ class TaskDtoMapper @Inject constructor(){
 
     fun mapToEntity(taskDto: TaskDto): TaskEntity {
         return TaskEntity(
+            id = taskDto.id,
             title = taskDto.title,
             startDate = taskDto.startDate,
             endDate = taskDto.endDate,

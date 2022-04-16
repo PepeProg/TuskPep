@@ -23,7 +23,15 @@ class AllTasksViewModel(
 
     fun addRandomTask() {
         viewModelScope.launch {
-            allTasksUseCases.saveTask(TaskVo("keke", Date(), Date()))
+            allTasksUseCases.saveTask(TaskVo(UUID.randomUUID(), "keke", Date(), Date()))
+            fetchTasks()
+        }
+    }
+
+    fun deleteAllTasks() {
+        viewModelScope.launch {
+            allTasksUseCases.deleteAllTasks()
+            fetchTasks()
         }
     }
 

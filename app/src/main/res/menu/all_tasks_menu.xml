@@ -7,4 +7,9 @@
         android:icon="@android:drawable/btn_plus"
         android:title="@string/add_task_menu"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/delete_all"
+        android:icon="@android:drawable/ic_delete"
+        android:title="@string/delete_all_menu"
+        app:showAsAction="ifRoom" />
 </menu>

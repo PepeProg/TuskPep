@@ -73,6 +73,7 @@ dependencies {
 
     implementation "com.mikepenz:fastadapter:$fast_adapter_version"
     implementation "com.mikepenz:fastadapter-extensions-expandable:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-diff:$fast_adapter_version"
 
     //Room
     def room_version = "2.4.2"

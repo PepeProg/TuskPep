@@ -9,8 +9,10 @@ import com.example.tusk.R
 import com.example.tusk.presentation.MainApplication
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
 import javax.inject.Inject
+
 
 class AllTasksFragment: Fragment() {
 
@@ -46,6 +48,10 @@ class AllTasksFragment: Fragment() {
                 viewModel.addRandomTask()
                 true
             }
+            R.id.delete_all -> {
+                viewModel.deleteAllTasks()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -66,6 +72,7 @@ class AllTasksFragment: Fragment() {
     private fun setupRecyclerView() {
         taskRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
+            fastAdapter.setHasStableIds(true)
             adapter = fastAdapter
         }
         observeTasks()
@@ -76,7 +83,12 @@ class AllTasksFragment: Fragment() {
             val items = tasks.map { taskVo ->
                 TaskItem(taskVo)
             }
-            taskAdapter.set(items)
+            val result = FastAdapterDiffUtil.calculateDiff(
+                taskAdapter,
+                items,
+                TaskItem.DiffCallback()
+            )
+            FastAdapterDiffUtil[taskAdapter] = result
         }
     }
 

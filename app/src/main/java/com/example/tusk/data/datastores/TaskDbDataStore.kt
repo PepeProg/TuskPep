@@ -24,4 +24,8 @@ class TaskDbDataStore @Inject constructor(
     suspend fun getTaskById(id: UUID): TaskDto {
         return taskDao.getTaskById(id)
     }
+
+    suspend fun deleteAllTasks() {
+        taskDao.deleteAllTasks()
+    }
 }

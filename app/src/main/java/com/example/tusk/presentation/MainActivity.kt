@@ -1,7 +1,7 @@
 package com.example.tusk.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tusk.R
 import com.example.tusk.presentation.navigation.MainNavigator
 import com.example.tusk.presentation.navigation.Screens
@@ -9,7 +9,7 @@ import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class MainActivity : FragmentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val navigator = MainNavigator(this, R.id.fragment_container)
 
