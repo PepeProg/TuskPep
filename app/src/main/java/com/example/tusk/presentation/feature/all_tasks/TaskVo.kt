@@ -7,4 +7,5 @@ data class TaskVo(
     val title: String,
     val startDate: Date,
     val endDate: Date,
+    var priority: Int,
 )

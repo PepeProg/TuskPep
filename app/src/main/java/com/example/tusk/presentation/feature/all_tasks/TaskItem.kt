@@ -5,11 +5,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tusk.R
 import com.mikepenz.fastadapter.IIdentifyable
+import com.mikepenz.fastadapter.drag.IDraggable
 import com.mikepenz.fastadapter.items.ModelAbstractItem
 
-class TaskItem(task: TaskVo): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IIdentifyable {
+class TaskItem(task: TaskVo): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IDraggable {
 
     override val layoutRes: Int = R.layout.item_task
+
+    override val isDraggable: Boolean = true
 
     override val type: Int = R.id.task_item
 
@@ -25,7 +28,7 @@ class TaskItem(task: TaskVo): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(tas
         holder.apply {
             title.text = model.title
             startDate.text = model.startDate.toString()
-            endDate.text = model.endDate.toString()
+            endDate.text = model.priority.toString()
         }
     }
 

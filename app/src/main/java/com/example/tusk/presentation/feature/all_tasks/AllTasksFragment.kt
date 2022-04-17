@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tusk.R
 import com.example.tusk.presentation.MainApplication
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
+import com.mikepenz.fastadapter.drag.ItemTouchCallback
+import com.mikepenz.fastadapter.drag.SimpleDragCallback
+import com.mikepenz.fastadapter.utils.DragDropUtil
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
 import javax.inject.Inject
 
 
-class AllTasksFragment: Fragment() {
+class AllTasksFragment: Fragment(), ItemTouchCallback {
 
     @Inject
     lateinit var allTasksUseCases: AllTasksUseCases
@@ -72,9 +76,12 @@ class AllTasksFragment: Fragment() {
     private fun setupRecyclerView() {
         taskRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            fastAdapter.setHasStableIds(true)
             adapter = fastAdapter
         }
+
+        val touchCallback = SimpleDragCallback(this)
+        val touchHelper = ItemTouchHelper(touchCallback)
+        touchHelper.attachToRecyclerView(taskRecycler)
         observeTasks()
     }
 
@@ -88,7 +95,9 @@ class AllTasksFragment: Fragment() {
                 items,
                 TaskItem.DiffCallback()
             )
+            val state = taskRecycler.layoutManager?.onSaveInstanceState()
             FastAdapterDiffUtil[taskAdapter] = result
+            taskRecycler.layoutManager?.onRestoreInstanceState(state)
         }
     }
 
@@ -96,5 +105,17 @@ class AllTasksFragment: Fragment() {
         fun newInstance(): AllTasksFragment {
             return AllTasksFragment()
         }
+    }
+
+    override fun itemTouchOnMove(oldPosition: Int, newPosition: Int): Boolean {
+        DragDropUtil.onMove(taskAdapter, oldPosition, newPosition)
+        return true
+    }
+
+    override fun itemTouchDropped(oldPosition: Int, newPosition: Int) {
+        val taskVos = taskAdapter.itemList.items.map { taskItem ->
+            taskItem.model
+        }
+        viewModel.itemPosChanged(taskVos, oldPosition, newPosition)
     }
 }

@@ -7,4 +7,5 @@ data class TaskEntity(
     val title: String,
     val startDate: Date,
     val endDate: Date,
+    val priority: Int,
 )

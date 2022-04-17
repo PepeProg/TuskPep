@@ -17,6 +17,10 @@ class TaskDbDataStore @Inject constructor(
         taskDao.addTasks(tasks)
     }
 
+    suspend fun updateTasks(tasks: List<TaskDto>) {
+        taskDao.updateTasks(tasks)
+    }
+
     suspend fun getAllTasks(): List<TaskDto> {
         return taskDao.getAllTasks()
     }

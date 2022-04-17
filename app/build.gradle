@@ -43,7 +43,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
     //Dagger
-    def dagger_version = "2.40.2"
+    def dagger_version = "2.41"
     
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -74,6 +74,10 @@ dependencies {
     implementation "com.mikepenz:fastadapter:$fast_adapter_version"
     implementation "com.mikepenz:fastadapter-extensions-expandable:$fast_adapter_version"
     implementation "com.mikepenz:fastadapter-extensions-diff:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-scroll:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-utils:$fast_adapter_version"
+
 
     //Room
     def room_version = "2.4.2"

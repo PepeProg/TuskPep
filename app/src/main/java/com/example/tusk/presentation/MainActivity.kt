@@ -31,12 +31,16 @@ class MainActivity : AppCompatActivity() {
         super.onResumeFragments()
 
         navigatorHolder.setNavigator(navigator)
-        router.navigateTo(Screens.AllTasks())
+        initiateNavigation()
     }
 
     override fun onPause() {
         super.onPause()
 
         navigatorHolder.removeNavigator()
+    }
+
+    private fun initiateNavigation() {
+        router.navigateTo(Screens.AllTasks())
     }
 }
