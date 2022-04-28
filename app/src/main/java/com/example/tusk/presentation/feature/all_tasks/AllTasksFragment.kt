@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tusk.R
 import com.example.tusk.presentation.MainApplication
+import com.example.tusk.presentation.feature.task_details.TaskDetailsDialogFragment
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
@@ -22,6 +23,8 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
 
     @Inject
     lateinit var allTasksUseCases: AllTasksUseCases
+
+    private lateinit var addTuskButton: MenuItem
 
     private val viewModel: AllTasksViewModel by lazy {
         ViewModelProvider(
@@ -43,12 +46,14 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         inflater.inflate(R.menu.all_tasks_menu, menu)
+        addTuskButton = menu.findItem(R.id.add_task)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.add_task -> {
+                addTuskButton.isEnabled = false
                 viewModel.addRandomTask()
                 true
             }
@@ -87,9 +92,8 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
 
     private fun observeTasks() {
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            val items = tasks.map { taskVo ->
-                TaskItem(taskVo)
-            }
+            addTuskButton.isEnabled = true
+            val items = tasks.map(this::createTaskItem)
             val result = FastAdapterDiffUtil.calculateDiff(
                 taskAdapter,
                 items,
@@ -98,12 +102,6 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
             val state = taskRecycler.layoutManager?.onSaveInstanceState()
             FastAdapterDiffUtil[taskAdapter] = result
             taskRecycler.layoutManager?.onRestoreInstanceState(state)
-        }
-    }
-
-    companion object {
-        fun newInstance(): AllTasksFragment {
-            return AllTasksFragment()
         }
     }
 
@@ -117,5 +115,26 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
             taskItem.model
         }
         viewModel.itemPosChanged(taskVos, oldPosition, newPosition)
+    }
+
+    private fun createTaskItem(taskVo: TaskVo): TaskItem {
+        return TaskItem(
+            taskVo,
+            this::showDetailsDialog
+        )
+    }
+
+    private fun showDetailsDialog(source: View, taskVo: TaskVo) {
+        TaskDetailsDialogFragment.newInstance(source).show(
+            requireActivity().supportFragmentManager,
+            "Kel"
+        )
+    }
+
+
+    companion object {
+        fun newInstance(): AllTasksFragment {
+            return AllTasksFragment()
+        }
     }
 }

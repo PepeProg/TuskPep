@@ -4,11 +4,13 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tusk.R
-import com.mikepenz.fastadapter.IIdentifyable
 import com.mikepenz.fastadapter.drag.IDraggable
 import com.mikepenz.fastadapter.items.ModelAbstractItem
 
-class TaskItem(task: TaskVo): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IDraggable {
+class TaskItem(
+    task: TaskVo,
+    private val onClickListener: (View, TaskVo) -> Unit,
+): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IDraggable {
 
     override val layoutRes: Int = R.layout.item_task
 
@@ -29,6 +31,9 @@ class TaskItem(task: TaskVo): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(tas
             title.text = model.title
             startDate.text = model.startDate.toString()
             endDate.text = model.priority.toString()
+            itemView.setOnClickListener {
+                onClickListener(itemView, model)
+            }
         }
     }
 
