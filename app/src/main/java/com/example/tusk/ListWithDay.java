@@ -2,15 +2,15 @@ package com.example.tusk;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
+//import android.view.View;
+//import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import java.text.DateFormat;
+//import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Locale;
+//import java.util.Locale;
 
 public class ListWithDay extends AppCompatActivity {
 
