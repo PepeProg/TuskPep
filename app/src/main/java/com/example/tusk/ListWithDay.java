@@ -1,5 +1,5 @@
 package com.example.tusk;
-
+/*
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.view.View;
@@ -45,4 +45,4 @@ public class ListWithDay extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, day_of_weeks);
         lvMain.setAdapter(adapter);
     }
-}
+}*/
