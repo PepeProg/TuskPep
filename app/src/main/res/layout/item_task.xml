@@ -4,50 +4,61 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="8dp"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:clickable="true"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="10dp"
     android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <TextView
+        android:id="@+id/end_date"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="100dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="19" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="-20dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
+        tools:text="Навестить маму Влада"
+        />
+    <TextView
+        android:id="@+id/end_date_week"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-6dp"
+        android:layout_marginEnd="103dp"
+        android:elevation="2dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="Mon" />
+
+    <ImageView
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="70dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:src="@drawable/stick"
+        android:elevation="1dp" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="4dp"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Заголовок" />
-
-        <TextView
-            android:id="@+id/start_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            tools:text="Дата старта" />
-
-        <TextView
-            android:id="@+id/end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_date"
-            tools:text="Deadline" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/rectangle_task"/>
 
 </androidx.cardview.widget.CardView>

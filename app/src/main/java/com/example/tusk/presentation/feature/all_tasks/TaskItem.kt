@@ -29,7 +29,7 @@ class TaskItem(
 
         holder.apply {
             title.text = model.title
-            startDate.text = model.startDate.toString()
+            //startDate.text = model.startDate.toString()
             endDate.text = model.endDate.toString()
             itemView.setOnClickListener {
                 onClickListener(itemView, model)
@@ -39,7 +39,7 @@ class TaskItem(
 
     class ViewHolder(taskView: View) : RecyclerView.ViewHolder(taskView) {
         val title: TextView = taskView.findViewById(R.id.title)
-        val startDate: TextView = taskView.findViewById(R.id.start_date)
+       // val startDate: TextView = taskView.findViewById(R.id.start_date)
         val endDate: TextView = taskView.findViewById(R.id.end_date)
     }
 

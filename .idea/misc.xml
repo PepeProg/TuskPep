@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/rectangle_task.xml" value="0.2015" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/stick.xml" value="0.2015" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/item_task.xml" value="0.4" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/notifications_fragment.xml" value="0.26145833333333335" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TuskPep/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TuskPep/app/src/main/res/layout/all_tasks_fragment.xml" value="0.358695652173913" />
         <entry key="..\:/Users/User/AndroidStudioProjects/TuskPep/app/src/main/res/layout/item_task.xml" value="0.358695652173913" />
