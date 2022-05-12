@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,22 +14,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_view"
+        <EditText
+            android:id="@+id/name_edit_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Keke"
             android:textSize="20sp"
+            android:layout_margin="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name"/>
+
+        <EditText
+            android:id="@+id/descr_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_edit_text"
+            tools:text="Description"/>
+
+        <TextView
+            android:id="@+id/deadline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:text="@string/deadline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descr_edit_text"/>
 
         <Button
+            android:id="@+id/deadline_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Keke"
+            android:layout_marginStart="35dp"
+
+            app:layout_constraintStart_toEndOf="@id/deadline_text"
+            app:layout_constraintTop_toBottomOf="@id/descr_edit_text"
+            tools:text="11.11.2011"/>
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:layout_marginTop="40dp"
             android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view"/>
+            app:layout_constraintTop_toBottomOf="@id/deadline_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

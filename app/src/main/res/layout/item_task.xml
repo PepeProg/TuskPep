@@ -46,7 +46,7 @@
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/start_date"
-            tools:text="Дата старта" />
+            tools:text="Deadline" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

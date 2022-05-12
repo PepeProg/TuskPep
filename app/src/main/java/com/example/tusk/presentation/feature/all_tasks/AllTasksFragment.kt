@@ -16,6 +16,9 @@ import com.mikepenz.fastadapter.drag.ItemTouchCallback
 import com.mikepenz.fastadapter.drag.SimpleDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
+import kotlinx.android.synthetic.main.item_task.*
+import java.io.Serializable
+import java.util.*
 import javax.inject.Inject
 
 
@@ -125,10 +128,29 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
     }
 
     private fun showDetailsDialog(source: View, taskVo: TaskVo) {
-        TaskDetailsDialogFragment.newInstance(source).show(
+        val args = TaskDetailsDialogFragment.Companion.Arguments(
+            source = source,
+            name = taskVo.title,
+            description = "Kekwait",
+            deadline = taskVo.endDate,
+            requestKey = REQUEST_KEY,
+            taskVo.priority,
+        )
+        parentFragmentManager.setFragmentResultListener(REQUEST_KEY, this) { key, bundle ->
+            handleResult(key, bundle)
+        }
+
+        TaskDetailsDialogFragment.newInstance(args).show(
             requireActivity().supportFragmentManager,
             "Kel"
         )
+    }
+
+    private fun handleResult(key: String, bundle: Bundle) {
+        val result = bundle.getSerializable(REQUEST_KEY) as DetailsResult
+
+        val taskVo = taskAdapter.itemList.items[result.pos].model
+        viewModel.updateTask(taskVo, result.description, result.name, result.deadline)
     }
 
 
@@ -136,5 +158,14 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
         fun newInstance(): AllTasksFragment {
             return AllTasksFragment()
         }
+
+        private const val REQUEST_KEY = "request_key"
+
+        data class DetailsResult(
+            var name: String,
+            var description: String,
+            var deadline: Date,
+            val pos: Int,
+        ): Serializable
     }
 }

@@ -64,6 +64,18 @@ class AllTasksViewModel(
         }
     }
 
+    fun updateTask(taskVo: TaskVo, newDescription: String, newName: String, newDeadline: Date) {
+        taskVo.apply {
+            title = newName
+            endDate = newDeadline
+        }
+
+        viewModelScope.launch {
+            allTasksUseCases.updateTask(taskVo)
+        }
+        fetchTasks()
+    }
+
     class Factory (
         private val allTasksUseCases: AllTasksUseCases,
     ) : ViewModelProvider.Factory {

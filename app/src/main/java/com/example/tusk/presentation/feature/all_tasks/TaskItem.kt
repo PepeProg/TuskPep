@@ -30,7 +30,7 @@ class TaskItem(
         holder.apply {
             title.text = model.title
             startDate.text = model.startDate.toString()
-            endDate.text = model.priority.toString()
+            endDate.text = model.endDate.toString()
             itemView.setOnClickListener {
                 onClickListener(itemView, model)
             }

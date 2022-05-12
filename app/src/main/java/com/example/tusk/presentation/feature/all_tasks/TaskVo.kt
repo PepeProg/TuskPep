@@ -4,8 +4,8 @@ import java.util.*
 
 data class TaskVo(
     val id: UUID,
-    val title: String,
+    var title: String,
     val startDate: Date,
-    val endDate: Date,
+    var endDate: Date,
     var priority: Int,
 )

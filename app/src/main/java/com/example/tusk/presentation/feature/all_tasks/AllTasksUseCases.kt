@@ -1,9 +1,6 @@
 package com.example.tusk.presentation.feature.all_tasks
 
-import com.example.tusk.domain.usecase.DeleteAllTaskUseCase
-import com.example.tusk.domain.usecase.SaveTaskUseCase
-import com.example.tusk.domain.usecase.GelAllTasksUseCase
-import com.example.tusk.domain.usecase.SaveTaskListUseCase
+import com.example.tusk.domain.usecase.*
 import com.example.tusk.presentation.feature.formatter.TaskFormatter
 import javax.inject.Inject
 
@@ -13,6 +10,7 @@ class AllTasksUseCases @Inject constructor(
     private val gelAllTasksUseCase: GelAllTasksUseCase,
     private val deleteAllTaskUseCase: DeleteAllTaskUseCase,
     private val saveTaskListUseCase: SaveTaskListUseCase,
+    private val updateTaskUseCase: UpdateTaskUseCase,
 ) {
 
     suspend fun getAllTasks(): List<TaskVo> {
@@ -33,5 +31,10 @@ class AllTasksUseCases @Inject constructor(
 
     suspend fun deleteAllTasks() {
         deleteAllTaskUseCase.execute()
+    }
+
+    suspend fun updateTask(task: TaskVo) {
+        val taskEntity = taskFormatter.formatVo(task)
+        updateTaskUseCase.execute(taskEntity)
     }
 }

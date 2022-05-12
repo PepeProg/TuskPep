@@ -31,4 +31,10 @@ class TaskRepository @Inject constructor(
 
         taskDbDataStore.updateTasks(taskDtos)
     }
+
+    suspend fun updateTask(task: TaskEntity) {
+        val taskDto = taskDtoMapper.mapToDto(task)
+
+        taskDbDataStore.updateTask(taskDto)
+    }
 }
