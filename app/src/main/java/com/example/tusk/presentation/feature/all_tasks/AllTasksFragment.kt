@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tusk.R
 import com.example.tusk.presentation.MainApplication
 import com.example.tusk.presentation.feature.task_details.TaskDetailsDialogFragment
+import com.example.tusk.presentation.navigation.Screens
+import com.github.terrakok.cicerone.Router
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
@@ -26,6 +28,10 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
 
     @Inject
     lateinit var allTasksUseCases: AllTasksUseCases
+
+    @Inject
+    lateinit var router: Router
+
 
     private lateinit var addTuskButton: MenuItem
 
@@ -62,6 +68,10 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
             }
             R.id.delete_all -> {
                 viewModel.deleteAllTasks()
+                true
+            }
+            R.id.notifications -> {
+                router.navigateTo(Screens.NotificationsScreen())
                 true
             }
             else -> super.onOptionsItemSelected(item)
