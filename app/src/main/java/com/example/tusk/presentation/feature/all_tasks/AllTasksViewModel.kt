@@ -52,7 +52,7 @@ class AllTasksViewModel(
             allTasksUseCases.deleteTask(taskVo)
             val mutList = itemList.toMutableList()
             mutList.remove(taskVo)
-            validateAll(itemList)
+            validateAll(mutList)
         }
     }
 
