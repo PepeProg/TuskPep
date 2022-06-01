@@ -32,7 +32,8 @@ class AllTasksViewModel(
                 title = "keke",
                 startDate = Date(),
                 endDate = Date(),
-                priority = tasks.value!!.size
+                priority = tasks.value!!.size,
+                description = "keke descr",
             ))
             fetchTasks()
         }
@@ -68,12 +69,13 @@ class AllTasksViewModel(
         taskVo.apply {
             title = newName
             endDate = newDeadline
+            description = newDescription
         }
 
         viewModelScope.launch {
             allTasksUseCases.updateTask(taskVo)
+            fetchTasks()
         }
-        fetchTasks()
     }
 
     class Factory (

@@ -13,6 +13,7 @@ class TaskDtoMapper @Inject constructor(){
             startDate = taskEntity.startDate,
             endDate = taskEntity.endDate,
             priority = taskEntity.priority,
+            description = taskEntity.description,
         )
     }
 
@@ -23,6 +24,7 @@ class TaskDtoMapper @Inject constructor(){
             startDate = taskDto.startDate,
             endDate = taskDto.endDate,
             priority = taskDto.priority,
+            description = taskDto.description,
         )
     }
 }

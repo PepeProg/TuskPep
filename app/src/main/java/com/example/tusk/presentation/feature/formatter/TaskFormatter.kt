@@ -13,6 +13,7 @@ class TaskFormatter @Inject constructor() {
             startDate = taskEntity.startDate,
             endDate = taskEntity.endDate,
             priority = taskEntity.priority,
+            description = taskEntity.description,
         )
     }
 
@@ -23,6 +24,7 @@ class TaskFormatter @Inject constructor() {
             startDate = taskVo.startDate,
             endDate = taskVo.endDate,
             priority = taskVo.priority,
+            description = taskVo.description,
         )
     }
 }

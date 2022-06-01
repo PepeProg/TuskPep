@@ -2,6 +2,7 @@ package com.example.tusk.presentation.feature.task_details
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.DatePicker
@@ -10,18 +11,21 @@ import com.example.tusk.R
 import com.example.tusk.presentation.feature.all_tasks.AllTasksFragment
 import kotlinx.android.synthetic.main.fragment_dialog_task_details.*
 import java.io.Serializable
+import java.text.SimpleDateFormat
 import java.util.*
 
+private const val TAG = "TaskDetailsFragment"
 
 class TaskDetailsDialogFragment : DialogFragment() {
     private lateinit var source: View
     private lateinit var requestKey: String
     private lateinit var args: Arguments
-    private var deadline = Date()
+    private lateinit var deadline: Date
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "Created")
         args = arguments?.getSerializable(ARG_KEY) as Arguments
     }
 
@@ -38,11 +42,13 @@ class TaskDetailsDialogFragment : DialogFragment() {
 
         source = args.source
         requestKey = args.requestKey
+        deadline = args.deadline
         setDialogPosition()
 
         name_edit_text.setText(args.name)
         descr_edit_text.setText(args.description)
-        deadline_button.text = args.deadline.toString()
+        deadline_button.text = SimpleDateFormat("dd:MM, y", Locale.ENGLISH)
+            .format(args.deadline)
         submit_button.setOnClickListener {
             onSubmitClick()
         }
@@ -87,6 +93,8 @@ class TaskDetailsDialogFragment : DialogFragment() {
                 set(Calendar.DAY_OF_MONTH, day)
             }
             deadline = calendar.time
+            deadline_button.text = SimpleDateFormat("dd:MM, y", Locale.ENGLISH)
+                .format(deadline)
         }
     }
 
@@ -124,6 +132,11 @@ class TaskDetailsDialogFragment : DialogFragment() {
         val metrics = activity?.resources?.displayMetrics
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics).toInt()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "Destroyed")
     }
 
     companion object {

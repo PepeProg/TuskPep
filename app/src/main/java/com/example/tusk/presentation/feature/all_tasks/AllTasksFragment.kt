@@ -16,6 +16,7 @@ import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import com.mikepenz.fastadapter.drag.ItemTouchCallback
 import com.mikepenz.fastadapter.drag.SimpleDragCallback
+import com.mikepenz.fastadapter.swipe_drag.SimpleSwipeDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
 import kotlinx.android.synthetic.main.item_task.*
@@ -123,6 +124,8 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
         return true
     }
 
+
+
     override fun itemTouchDropped(oldPosition: Int, newPosition: Int) {
         val taskVos = taskAdapter.itemList.items.map { taskItem ->
             taskItem.model
@@ -141,7 +144,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
         val args = TaskDetailsDialogFragment.Companion.Arguments(
             source = source,
             name = taskVo.title,
-            description = "Kekwait",
+            description = taskVo.description,
             deadline = taskVo.endDate,
             requestKey = REQUEST_KEY,
             taskVo.priority,

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tusk.R
 import com.mikepenz.fastadapter.drag.IDraggable
 import com.mikepenz.fastadapter.items.ModelAbstractItem
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskItem(
     task: TaskVo,
@@ -30,7 +32,8 @@ class TaskItem(
         holder.apply {
             title.text = model.title
             //startDate.text = model.startDate.toString()
-            endDate.text = model.endDate.toString()
+            endDateWeek.text = SimpleDateFormat("E", Locale.ENGLISH).format(model.endDate)
+            endDate.text = SimpleDateFormat("d", Locale.ENGLISH).format(model.endDate)
             itemView.setOnClickListener {
                 onClickListener(itemView, model)
             }
@@ -41,6 +44,7 @@ class TaskItem(
         val title: TextView = taskView.findViewById(R.id.title)
        // val startDate: TextView = taskView.findViewById(R.id.start_date)
         val endDate: TextView = taskView.findViewById(R.id.end_date)
+        val endDateWeek: TextView = taskView.findViewById(R.id.end_date_week)
     }
 
     class DiffCallback : com.mikepenz.fastadapter.diff.DiffCallback<TaskItem> {

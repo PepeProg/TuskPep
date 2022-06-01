@@ -13,4 +13,5 @@ data class TaskDto(
     @ColumnInfo(name = "start_date") val startDate: Date = Date(),
     @ColumnInfo(name = "end_date") val endDate: Date = Date(),
     @ColumnInfo(name = "priority") val priority: Int = 0,
+    @ColumnInfo(name = "description") val description: String = "",
 )

@@ -78,6 +78,7 @@ dependencies {
     implementation "com.mikepenz:fastadapter-extensions-drag:$fast_adapter_version"
     implementation "com.mikepenz:fastadapter-extensions-scroll:$fast_adapter_version"
     implementation "com.mikepenz:fastadapter-extensions-utils:$fast_adapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-swipe:$fast_adapter_version"
 
 
     //Room
