@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class WeekDaysUseCases @Inject constructor() {
 
-    fun getAllDays(date: Date): List<WeekDayVo> {
+    suspend fun getAllDays(date: Date): List<WeekDayVo> {
         val listDays = mutableListOf<WeekDayVo>()
         val weekList = listOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
             "Sunday")
