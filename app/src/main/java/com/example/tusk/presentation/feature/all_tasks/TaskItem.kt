@@ -6,17 +6,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tusk.R
 import com.mikepenz.fastadapter.drag.IDraggable
 import com.mikepenz.fastadapter.items.ModelAbstractItem
+import com.mikepenz.fastadapter.swipe.ISwipeable
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TaskItem(
     task: TaskVo,
     private val onClickListener: (View, TaskVo) -> Unit,
-): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IDraggable {
+): ModelAbstractItem<TaskVo, TaskItem.ViewHolder>(task), IDraggable, ISwipeable {
 
     override val layoutRes: Int = R.layout.item_task
 
     override val isDraggable: Boolean = true
+
+    override val isSwipeable: Boolean = true
 
     override val type: Int = R.id.task_item
 

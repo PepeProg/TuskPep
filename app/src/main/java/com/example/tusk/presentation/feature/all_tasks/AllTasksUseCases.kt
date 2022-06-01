@@ -11,6 +11,7 @@ class AllTasksUseCases @Inject constructor(
     private val deleteAllTaskUseCase: DeleteAllTaskUseCase,
     private val saveTaskListUseCase: SaveTaskListUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
+    private val deleteTaskUseCase: DeleteTaskUseCase,
 ) {
 
     suspend fun getAllTasks(): List<TaskVo> {
@@ -36,5 +37,10 @@ class AllTasksUseCases @Inject constructor(
     suspend fun updateTask(task: TaskVo) {
         val taskEntity = taskFormatter.formatVo(task)
         updateTaskUseCase.execute(taskEntity)
+    }
+
+    suspend fun deleteTask(task: TaskVo) {
+        val taskEntity = taskFormatter.formatVo(task)
+        deleteTaskUseCase.execute(taskEntity)
     }
 }

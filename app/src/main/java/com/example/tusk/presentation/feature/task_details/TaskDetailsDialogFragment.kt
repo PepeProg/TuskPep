@@ -1,11 +1,13 @@
 package com.example.tusk.presentation.feature.task_details
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.DatePicker
+import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import com.example.tusk.R
 import com.example.tusk.presentation.feature.all_tasks.AllTasksFragment
@@ -48,12 +50,17 @@ class TaskDetailsDialogFragment : DialogFragment() {
         name_edit_text.setText(args.name)
         descr_edit_text.setText(args.description)
         deadline_button.text = SimpleDateFormat("dd:MM, y", Locale.ENGLISH)
-            .format(args.deadline)
+            .format(deadline)
+        deadline_time_button.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+            .format(deadline)
         submit_button.setOnClickListener {
             onSubmitClick()
         }
         deadline_button.setOnClickListener {
             onDeadlineClick()
+        }
+        deadline_time_button.setOnClickListener {
+            onDeadlineButtonClick()
         }
     }
 
@@ -84,9 +91,24 @@ class TaskDetailsDialogFragment : DialogFragment() {
         ).show()
     }
 
+    private fun onDeadlineButtonClick() {
+        val initialTime = Calendar.getInstance().apply { time = deadline }
+
+        TimePickerDialog(
+            requireContext(),
+            TimeListener(),
+            initialTime.get(Calendar.HOUR_OF_DAY),
+            initialTime.get(Calendar.MINUTE),
+            true
+        ).show()
+    }
+
     private inner class DateListener: DatePickerDialog.OnDateSetListener {
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
             val calendar = Calendar.getInstance()
+            if (::deadline.isInitialized) {
+                calendar.time = deadline
+            }
             calendar.apply {
                 set(Calendar.YEAR, year)
                 set(Calendar.MONTH, month)
@@ -94,6 +116,22 @@ class TaskDetailsDialogFragment : DialogFragment() {
             }
             deadline = calendar.time
             deadline_button.text = SimpleDateFormat("dd:MM, y", Locale.ENGLISH)
+                .format(deadline)
+        }
+    }
+
+    private inner class TimeListener: TimePickerDialog.OnTimeSetListener {
+        override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+            val calendar = Calendar.getInstance()
+            if (::deadline.isInitialized) {
+                calendar.time = deadline
+            }
+            calendar.apply {
+                set(Calendar.HOUR_OF_DAY, hourOfDay)
+                set(Calendar.MINUTE, minute)
+            }
+            deadline = calendar.time
+            deadline_time_button.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
                 .format(deadline)
         }
     }

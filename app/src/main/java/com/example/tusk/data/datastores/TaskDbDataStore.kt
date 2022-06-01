@@ -36,4 +36,8 @@ class TaskDbDataStore @Inject constructor(
     suspend fun updateTask(task: TaskDto) {
         taskDao.updateTask(task)
     }
+
+    suspend fun deleteTask(task: TaskDto) {
+        taskDao.deleteTask(task)
+    }
 }

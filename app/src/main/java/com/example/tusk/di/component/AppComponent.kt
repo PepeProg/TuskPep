@@ -6,6 +6,7 @@ import com.example.tusk.di.module.TaskDbModule
 import com.example.tusk.presentation.MainActivity
 import com.example.tusk.presentation.feature.all_tasks.AllTasksFragment
 import com.example.tusk.presentation.feature.notifications.NotificationsFragment
+import com.example.tusk.presentation.feature.week_days.WeekDaysFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -20,6 +21,7 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(allTasksFragment: AllTasksFragment)
+    fun inject(weekDaysFragment: WeekDaysFragment)
     fun inject(notificationsFragment: NotificationsFragment) {
 
     }

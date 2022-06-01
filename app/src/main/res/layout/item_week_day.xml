@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="40dp"
+    android:layout_marginVertical="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/degree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/ovaliche"
+        app:layout_constraintTop_toTopOf="@id/ovaliche"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="23dp"
+        android:elevation="1dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        android:text="31" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/sun"
+        app:layout_constraintStart_toStartOf="@id/ovaliche"
+        app:layout_constraintTop_toTopOf="@id/ovaliche"
+        />
+
+
+    <TextView
+        android:id="@+id/c"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        app:layout_constraintEnd_toEndOf="@id/ovaliche"
+        app:layout_constraintTop_toTopOf="@id/ovaliche"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="1dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        tools:text="C" />
+
+    <ImageView
+        android:id="@+id/eclip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="19dp"
+        app:layout_constraintEnd_toEndOf="@id/ovaliche"
+        app:layout_constraintTop_toTopOf="@id/ovaliche"
+        android:src="@drawable/eclipse"
+
+        />
+
+
+    <TextView
+        android:id="@+id/week_title"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        app:layout_constraintRight_toRightOf="@id/fon_day_week"
+        app:layout_constraintLeft_toLeftOf="@id/fon_day_week"
+        app:layout_constraintBottom_toBottomOf="@id/fon_day_week"
+        android:elevation="2dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:text="Monday" />
+
+    <ImageView
+        android:id="@+id/ovaliche"
+        android:layout_width="101dp"
+        android:layout_height="50dp"
+        android:elevation="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="@id/fon_day_week"
+        app:layout_constraintTop_toTopOf="@id/fon_day_week"
+        android:src="@drawable/ovalnyi_oval"
+
+        />
+
+    <ImageView
+        android:id="@+id/fon_day_week"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/week_day"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

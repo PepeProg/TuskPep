@@ -41,6 +41,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initiateNavigation() {
-        router.navigateTo(Screens.AllTasks())
+        router.replaceScreen(Screens.AllTasks())
     }
 }

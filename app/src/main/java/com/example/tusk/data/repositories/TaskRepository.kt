@@ -26,6 +26,12 @@ class TaskRepository @Inject constructor(
         taskDbDataStore.deleteAllTasks()
     }
 
+    suspend fun deleteTask(task: TaskEntity) {
+        val taskDto = taskDtoMapper.mapToDto(task)
+
+        taskDbDataStore.deleteTask(taskDto)
+    }
+
     suspend fun updateTasks(tasks: List<TaskEntity>) {
         val taskDtos = tasks.map(taskDtoMapper::mapToDto)
 

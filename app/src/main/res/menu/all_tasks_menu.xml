@@ -7,15 +7,20 @@
         android:id="@+id/notifications"
         android:icon="@android:drawable/ic_popup_reminder"
         android:title="@string/notifications"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/add_task"
         android:icon="@android:drawable/btn_plus"
         android:title="@string/add_task_menu"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/delete_all"
         android:icon="@android:drawable/ic_delete"
         android:title="@string/delete_all_menu"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/calendar"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/calendar"
+        app:showAsAction="always" />
 </menu>

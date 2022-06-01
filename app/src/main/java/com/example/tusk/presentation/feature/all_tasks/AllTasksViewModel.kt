@@ -46,6 +46,13 @@ class AllTasksViewModel(
         }
     }
 
+    fun deleteTask(taskVo: TaskVo) {
+        viewModelScope.launch {
+            allTasksUseCases.deleteTask(taskVo)
+            fetchTasks()
+        }
+    }
+
     fun itemPosChanged(itemList: List<TaskVo>, oldPosition: Int, newPosition: Int) {
         if (oldPosition == newPosition)
             return

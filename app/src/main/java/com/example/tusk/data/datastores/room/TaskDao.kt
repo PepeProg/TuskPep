@@ -1,9 +1,6 @@
 package com.example.tusk.data.datastores.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.tusk.data.dto.TaskDto
 import java.util.*
 
@@ -27,4 +24,7 @@ interface TaskDao {
 
     @Query("DELETE FROM tasks")
     suspend fun deleteAllTasks()
+
+    @Delete
+    suspend fun deleteTask(task: TaskDto)
 }

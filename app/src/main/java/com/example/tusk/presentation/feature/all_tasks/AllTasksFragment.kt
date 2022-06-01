@@ -1,5 +1,6 @@
 package com.example.tusk.presentation.feature.all_tasks
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -15,17 +16,16 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import com.mikepenz.fastadapter.drag.ItemTouchCallback
-import com.mikepenz.fastadapter.drag.SimpleDragCallback
+import com.mikepenz.fastadapter.swipe.SimpleSwipeCallback
 import com.mikepenz.fastadapter.swipe_drag.SimpleSwipeDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
-import kotlinx.android.synthetic.main.item_task.*
 import java.io.Serializable
 import java.util.*
 import javax.inject.Inject
 
 
-class AllTasksFragment: Fragment(), ItemTouchCallback {
+class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemSwipeCallback {
 
     @Inject
     lateinit var allTasksUseCases: AllTasksUseCases
@@ -75,6 +75,10 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
                 router.navigateTo(Screens.NotificationsScreen())
                 true
             }
+            R.id.calendar -> {
+                router.navigateTo(Screens.WeekDaysScreen())
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -98,7 +102,13 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
             adapter = fastAdapter
         }
 
-        val touchCallback = SimpleDragCallback(this)
+        val touchCallback = SimpleSwipeDragCallback(
+            itemTouchCallback = this,
+            itemSwipeCallback = this,
+            null,
+            ItemTouchHelper.LEFT,
+            Color.RED
+        )
         val touchHelper = ItemTouchHelper(touchCallback)
         touchHelper.attachToRecyclerView(taskRecycler)
         observeTasks()
@@ -124,7 +134,9 @@ class AllTasksFragment: Fragment(), ItemTouchCallback {
         return true
     }
 
-
+    override fun itemSwiped(position: Int, direction: Int) {
+        viewModel.deleteTask(taskAdapter.itemList.items[position].model)
+    }
 
     override fun itemTouchDropped(oldPosition: Int, newPosition: Int) {
         val taskVos = taskAdapter.itemList.items.map { taskItem ->
