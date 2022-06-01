@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp"
+    android:layout_marginStart="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:background="@drawable/ok_button"
+        app:layout_constraintBottom_toBottomOf="@id/task_change_main"
+        app:layout_constraintStart_toStartOf="@id/task_change_main"
+        app:layout_constraintEnd_toEndOf="@id/task_change_main"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:singleLine="true"
+        android:elevation="3dp"
+        app:layout_constraintTop_toTopOf="@id/date_end"
+        app:layout_constraintStart_toStartOf="@id/date_end"
+        app:layout_constraintBottom_toBottomOf="@id/date_end"
+        app:layout_constraintEnd_toEndOf="@id/date_end"
+        android:text="18.11"
+        android:textColor="#000000"
+        />"
+
+
+    <ImageView
+        android:id="@+id/date_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/task_change_main"
+        app:layout_constraintTop_toBottomOf="@id/opisanie_fon"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:elevation="2dp"
+        android:background="@drawable/date"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:singleLine="true"
+        android:elevation="3dp"
+        app:layout_constraintTop_toTopOf="@id/date_start"
+        app:layout_constraintStart_toStartOf="@id/date_start"
+        app:layout_constraintBottom_toBottomOf="@id/date_start"
+        app:layout_constraintEnd_toEndOf="@id/date_start"
+        android:text="24.06"
+        android:textColor="#000000"
+        />"
+
+    <ImageView
+        android:id="@+id/date_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/task_change_main"
+        app:layout_constraintTop_toBottomOf="@id/opisanie_fon"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:elevation="2dp"
+        android:background="@drawable/date"/>
+
+
+
+    <EditText
+        android:background="@drawable/fon_opisanie_bez_ramki"
+        android:id="@+id/opisanie_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="7dp"
+        app:layout_constraintStart_toStartOf="@id/opisanie_fon"
+        app:layout_constraintEnd_toEndOf="@id/opisanie_fon"
+        android:elevation="3dp"
+        android:textColor="#000000"
+        android:textSize="13dp"
+        android:text="Я не ебу кто вообще сюда будет что то вписывать"
+        app:layout_constraintTop_toTopOf="@id/opisanie_fon"
+        app:layout_constraintBottom_toBottomOf="@id/opisanie_fon"/>
+
+    <ImageView
+        android:id="@+id/opisanie_fon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/task_change_main"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@id/task_change_main"
+        android:elevation="2dp"
+        app:layout_constraintTop_toBottomOf="@id/name_fon"
+        android:background="@drawable/opisanie_fon"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:singleLine="true"
+        app:layout_constraintTop_toTopOf="@id/name_fon"
+        android:elevation="3dp"
+        app:layout_constraintStart_toStartOf="@id/name_fon"
+        app:layout_constraintBottom_toBottomOf="@id/name_fon"
+        app:layout_constraintEnd_toEndOf="@id/name_fon"
+        android:text="Навестить чью-то маму"
+        android:textColor="#000000"
+        />"
+
+
+    <ImageView
+        android:id="@+id/name_fon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/task_change_main"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@id/task_change_main"
+        android:elevation="2dp"
+        app:layout_constraintTop_toTopOf="@id/task_change_main"
+        android:background="@drawable/change_task_name_fon"/>
+
+    <ImageView
+        android:id="@+id/task_change_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/task_change_main_fon"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

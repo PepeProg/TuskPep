@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/choice_week_fon.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/delete_all_button.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/eclipse.xml" value="0.2015" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/fon_opisanie_bez_ramki.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/ic_component_18.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/ic_component_20.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/ic_component_21.xml" value="0.2015" />
@@ -23,16 +24,19 @@
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/new_task_buuton.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/notepad_icon.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/notific.xml" value="0.2015" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/opisanie_fon.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/ovalnyi_oval.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/rectangle_task.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/soln.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/stick.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/sun.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/sun_background.xml" value="0.2015" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/task_change_main.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/toolbar_draw.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/drawable/week_day.xml" value="0.2015" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/all_tasks_fragment.xml" value="0.26145833333333335" />
+        <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/change_task.xml" value="0.4" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/choice_wekk_fragment.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/fragment_dialog_task_details.xml" value="0.26145833333333335" />
         <entry key="..\:/Users/Linke/AndroidStudioProjects/TuskPepe/app/src/main/res/layout/item_task.xml" value="0.536" />
