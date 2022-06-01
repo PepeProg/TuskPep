@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.tusk.R;
 import com.example.tusk.presentation.MainApplication;
@@ -35,7 +36,7 @@ public class NotificationsFragment extends Fragment {
     @Inject
     public Router router;
 
-    private MenuItem notificationsButton;
+    private ImageButton notificationsButton;
     private NotificationsViewModel viewModel;
 
     private ItemAdapter notificationAdapter = new ItemAdapter();
@@ -58,6 +59,7 @@ public class NotificationsFragment extends Fragment {
                             ,@Nullable ViewGroup container
                             ,@Nullable Bundle savedInstanceState) {
         Intrinsics.checkNotNullParameter(inflater, "inflater");
+        notificationsButton = requireActivity().findViewById(R.id.notification_button);
         return inflater.inflate(R.layout.notifications_fragment, container, false);
     }
 
@@ -72,6 +74,12 @@ public class NotificationsFragment extends Fragment {
         notificationRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         notificationRecycler.setAdapter(fastAdapter);
         observeTasks();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        notificationsButton.setOnClickListener((View view) -> router.exit());
     }
 
     private void observeTasks(){

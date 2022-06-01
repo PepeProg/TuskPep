@@ -7,6 +7,7 @@ import com.example.tusk.presentation.navigation.MainNavigator
 import com.example.tusk.presentation.navigation.Screens
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
+import java.util.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +42,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initiateNavigation() {
-        router.replaceScreen(Screens.AllTasks())
+        router.replaceScreen(Screens.AllTasks(Date()))
     }
 }

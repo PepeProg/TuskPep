@@ -3,6 +3,7 @@ package com.example.tusk.data.repositories
 import com.example.tusk.data.datastores.TaskDbDataStore
 import com.example.tusk.data.mapper.TaskDtoMapper
 import com.example.tusk.domain.entity.TaskEntity
+import java.util.*
 import javax.inject.Inject
 
 class TaskRepository @Inject constructor(
@@ -20,6 +21,22 @@ class TaskRepository @Inject constructor(
         return taskDbDataStore.getAllTasks().map { taskDto ->
             taskDtoMapper.mapToEntity(taskDto)
         }
+    }
+
+    suspend fun getTasksByDay(date: Date): List<TaskEntity> {
+        val entities = getAllTasks()
+        val currCalendar = Calendar.getInstance().apply { time = date }
+        val buffCalendar = Calendar.getInstance()
+
+        val filteredEntities = entities.filter { entity ->
+            buffCalendar.time = entity.endDate
+            val year = currCalendar.get(Calendar.YEAR) == buffCalendar.get(Calendar.YEAR)
+            val month = currCalendar.get(Calendar.MONTH) == buffCalendar.get(Calendar.MONTH)
+            val day = currCalendar.get(Calendar.DAY_OF_MONTH) == buffCalendar.get(Calendar.DAY_OF_MONTH)
+            year && month && day
+        }
+
+        return filteredEntities
     }
 
     suspend fun deleteAllTasks() {

@@ -8,6 +8,7 @@ import kotlin.math.min
 
 class AllTasksViewModel(
     private val allTasksUseCases: AllTasksUseCases,
+    private val currentDate: Date,
 ): ViewModel() {
 
     private val _tasks = MutableLiveData<List<TaskVo>>()
@@ -19,7 +20,7 @@ class AllTasksViewModel(
 
     private fun fetchTasks() {
         viewModelScope.launch {
-            _tasks.postValue(allTasksUseCases.getAllTasks().sortedBy {
+            _tasks.postValue(allTasksUseCases.getTasksByDay(currentDate).sortedBy {
                 it.priority
             })
         }
@@ -46,10 +47,12 @@ class AllTasksViewModel(
         }
     }
 
-    fun deleteTask(taskVo: TaskVo) {
+    fun deleteTask(taskVo: TaskVo, itemList: List<TaskVo>) {
         viewModelScope.launch {
             allTasksUseCases.deleteTask(taskVo)
-            fetchTasks()
+            val mutList = itemList.toMutableList()
+            mutList.remove(taskVo)
+            validateAll(itemList)
         }
     }
 
@@ -72,6 +75,16 @@ class AllTasksViewModel(
         }
     }
 
+    fun validateAll(itemList: List<TaskVo>) {
+        viewModelScope.launch {
+            itemList.forEachIndexed { index, taskVo ->
+                taskVo.priority = index
+            }
+            allTasksUseCases.updateTasks(itemList)
+            fetchTasks()
+        }
+    }
+
     fun updateTask(taskVo: TaskVo, newDescription: String, newName: String, newDeadline: Date) {
         taskVo.apply {
             title = newName
@@ -87,12 +100,13 @@ class AllTasksViewModel(
 
     class Factory (
         private val allTasksUseCases: AllTasksUseCases,
+        private val currentDate: Date,
     ) : ViewModelProvider.Factory {
 
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == AllTasksViewModel::class.java)
-            return AllTasksViewModel(allTasksUseCases) as T
+            return AllTasksViewModel(allTasksUseCases, currentDate) as T
         }
     }
 }

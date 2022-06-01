@@ -45,22 +45,12 @@
             app:layout_constraintTop_toBottomOf="@id/descr_edit_text"/>
 
         <Button
-            android:id="@+id/deadline_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-
-            app:layout_constraintStart_toEndOf="@id/deadline_text"
-            app:layout_constraintTop_toBottomOf="@id/descr_edit_text"
-            tools:text="11.11.2011"/>
-
-        <Button
             android:id="@+id/deadline_time_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
 
-            app:layout_constraintStart_toEndOf="@id/deadline_button"
+            app:layout_constraintStart_toEndOf="@id/deadline_text"
             app:layout_constraintTop_toBottomOf="@id/descr_edit_text"
             tools:text="20:00"/>
 
@@ -73,7 +63,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deadline_button" />
+            app:layout_constraintTop_toBottomOf="@id/deadline_time_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

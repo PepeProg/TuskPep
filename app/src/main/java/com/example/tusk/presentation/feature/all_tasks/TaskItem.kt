@@ -36,7 +36,8 @@ class TaskItem(
             title.text = model.title
             //startDate.text = model.startDate.toString()
             endDateWeek.text = SimpleDateFormat("E", Locale.ENGLISH).format(model.endDate)
-            endDate.text = SimpleDateFormat("d", Locale.ENGLISH).format(model.endDate)
+            endDate.text = model.priority.toString()
+                //SimpleDateFormat("d", Locale.ENGLISH).format(model.endDate)
             itemView.setOnClickListener {
                 onClickListener(itemView, model)
             }

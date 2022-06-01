@@ -3,6 +3,7 @@ package com.example.tusk.presentation.feature.all_tasks
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,6 +20,7 @@ import com.mikepenz.fastadapter.drag.ItemTouchCallback
 import com.mikepenz.fastadapter.swipe.SimpleSwipeCallback
 import com.mikepenz.fastadapter.swipe_drag.SimpleSwipeDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
 import java.io.Serializable
 import java.util.*
@@ -33,13 +35,17 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
     @Inject
     lateinit var router: Router
 
-
-    private lateinit var addTuskButton: MenuItem
+    private lateinit var notificationButton: ImageButton
+    private lateinit var weekDaysButton: ImageButton
+    private lateinit var currentDate: Date
 
     private val viewModel: AllTasksViewModel by lazy {
         ViewModelProvider(
             this,
-            AllTasksViewModel.Factory(allTasksUseCases)
+            AllTasksViewModel.Factory(
+                allTasksUseCases,
+                currentDate
+            )
         )[AllTasksViewModel::class.java]
     }
 
@@ -50,37 +56,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         super.onCreate(savedInstanceState)
 
         MainApplication.dagger.inject(this)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
-        inflater.inflate(R.menu.all_tasks_menu, menu)
-        addTuskButton = menu.findItem(R.id.add_task)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.add_task -> {
-                addTuskButton.isEnabled = false
-                viewModel.addRandomTask()
-                true
-            }
-            R.id.delete_all -> {
-                viewModel.deleteAllTasks()
-                true
-            }
-            R.id.notifications -> {
-                router.navigateTo(Screens.NotificationsScreen())
-                true
-            }
-            R.id.calendar -> {
-                router.navigateTo(Screens.WeekDaysScreen())
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        currentDate = arguments?.get(DATE_KEY) as Date
     }
 
     override fun onCreateView(
@@ -88,7 +64,32 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.all_tasks_fragment, container, false)
+        val view = inflater.inflate(R.layout.all_tasks_fragment, container, false)
+
+        notificationButton = requireActivity().findViewById(R.id.notification_button)
+        weekDaysButton = requireActivity().findViewById(R.id.week_days_button)
+        return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        add_task.setOnClickListener {
+            add_task.isEnabled = false
+            viewModel.addRandomTask()
+        }
+
+        delete_all.setOnClickListener {
+            viewModel.deleteAllTasks()
+        }
+
+        notificationButton.setOnClickListener {
+            router.navigateTo(Screens.NotificationsScreen())
+        }
+
+        weekDaysButton.setOnClickListener {
+            router.navigateTo(Screens.WeekDaysScreen())
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -116,7 +117,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
 
     private fun observeTasks() {
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            addTuskButton.isEnabled = true
+            add_task.isEnabled = true
             val items = tasks.map(this::createTaskItem)
             val result = FastAdapterDiffUtil.calculateDiff(
                 taskAdapter,
@@ -135,14 +136,17 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
     }
 
     override fun itemSwiped(position: Int, direction: Int) {
-        viewModel.deleteTask(taskAdapter.itemList.items[position].model)
+        val taskVos = taskAdapter.itemList.items.map { taskItem ->
+            taskItem.model
+        }
+        viewModel.deleteTask(taskAdapter.itemList.items[position].model, taskVos)
     }
 
     override fun itemTouchDropped(oldPosition: Int, newPosition: Int) {
         val taskVos = taskAdapter.itemList.items.map { taskItem ->
             taskItem.model
         }
-        viewModel.itemPosChanged(taskVos, oldPosition, newPosition)
+        viewModel.validateAll(taskVos)
     }
 
     private fun createTaskItem(taskVo: TaskVo): TaskItem {
@@ -180,11 +184,17 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
 
 
     companion object {
-        fun newInstance(): AllTasksFragment {
-            return AllTasksFragment()
+        fun newInstance(date: Date): AllTasksFragment {
+            val bundle = Bundle().apply {
+                putSerializable(DATE_KEY, date)
+            }
+            return AllTasksFragment().apply {
+                arguments = bundle
+            }
         }
 
         private const val REQUEST_KEY = "request_key"
+        private const val DATE_KEY = "date_key"
 
         data class DetailsResult(
             var name: String,

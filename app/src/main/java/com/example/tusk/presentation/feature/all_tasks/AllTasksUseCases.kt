@@ -2,6 +2,7 @@ package com.example.tusk.presentation.feature.all_tasks
 
 import com.example.tusk.domain.usecase.*
 import com.example.tusk.presentation.feature.formatter.TaskFormatter
+import java.util.*
 import javax.inject.Inject
 
 class AllTasksUseCases @Inject constructor(
@@ -12,10 +13,17 @@ class AllTasksUseCases @Inject constructor(
     private val saveTaskListUseCase: SaveTaskListUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val getTasksByDay: GetTasksByDay,
 ) {
 
     suspend fun getAllTasks(): List<TaskVo> {
         return gelAllTasksUseCase.execute().map { taskEntity ->
+            taskFormatter.formatEntity(taskEntity)
+        }
+    }
+
+    suspend fun getTasksByDay(date: Date): List<TaskVo> {
+        return getTasksByDay.execute(date).map { taskEntity ->
             taskFormatter.formatEntity(taskEntity)
         }
     }
