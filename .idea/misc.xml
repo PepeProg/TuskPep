@@ -15,6 +15,8 @@
         <entry key="..\:/Users/vladg/Desktop/andrProg/andrProj/TuskPep/app/src/main/res/layout/fragment_dialog_task_details.xml" value="0.3625" />
         <entry key="..\:/Users/vladg/Desktop/andrProg/andrProj/TuskPep/app/src/main/res/layout/item_task.xml" value="0.3625" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1935" />
+        <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable/arrow_left.xml" value="0.236" />
+        <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable/arrow_right.xml" value="0.236" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable/change_task_name_fon.xml" value="0.236" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable/choice_week_fon.xml" value="0.1" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/drawable/date.xml" value="0.236" />
@@ -36,7 +38,7 @@
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/font/roboto.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/all_tasks_fragment.xml" value="0.3625" />
-        <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/choice_week.xml" value="0.184375" />
+        <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/choice_week.xml" value="0.33" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/choice_wekk_fragment.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/fragment_dialog_task_details.xml" value="0.3625" />
         <entry key="..\:/Users/vladg/StudioProjects/TuskPep/app/src/main/res/layout/item_task.xml" value="0.5" />

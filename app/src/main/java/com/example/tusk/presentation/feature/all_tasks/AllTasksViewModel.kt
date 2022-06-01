@@ -32,7 +32,7 @@ class AllTasksViewModel(
                 id = UUID.randomUUID(),
                 title = "keke",
                 startDate = Date(),
-                endDate = Date(),
+                endDate = currentDate,
                 priority = tasks.value!!.size,
                 description = "keke descr",
             ))
@@ -40,9 +40,11 @@ class AllTasksViewModel(
         }
     }
 
-    fun deleteAllTasks() {
+    fun deleteAllTasks(itemList: List<TaskVo>) {
         viewModelScope.launch {
-            allTasksUseCases.deleteAllTasks()
+            itemList.forEach { taskVo ->
+                allTasksUseCases.deleteTask(taskVo)
+            }
             fetchTasks()
         }
     }

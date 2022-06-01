@@ -80,7 +80,10 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         }
 
         delete_all.setOnClickListener {
-            viewModel.deleteAllTasks()
+            val taskVos = taskAdapter.itemList.items.map { taskItem ->
+                taskItem.model
+            }
+            viewModel.deleteAllTasks(taskVos)
         }
 
         notificationButton.setOnClickListener {

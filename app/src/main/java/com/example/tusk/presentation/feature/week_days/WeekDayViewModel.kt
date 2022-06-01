@@ -3,6 +3,7 @@ package com.example.tusk.presentation.feature.week_days
 import androidx.lifecycle.*
 import com.example.tusk.presentation.feature.all_tasks.TaskVo
 import kotlinx.coroutines.launch
+import java.util.*
 
 class WeekDayViewModel(
     private val weekDaysUseCases: WeekDaysUseCases
@@ -12,12 +13,12 @@ class WeekDayViewModel(
     val days: LiveData<List<WeekDayVo>> = _days
 
     init {
-        fetchDays()
+        fetchDays(Date())
     }
 
-    private fun fetchDays() {
+    fun fetchDays(date: Date) {
         viewModelScope.launch {
-            _days.postValue(weekDaysUseCases.getAllDays().sortedBy {
+            _days.postValue(weekDaysUseCases.getAllDays(date).sortedBy {
                 it.order_id
             })
         }

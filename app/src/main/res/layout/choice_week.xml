@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
-        android:id="@+id/choice_week_fon"
+        android:id="@+id/choice_week_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,24 +14,15 @@
         android:background="@drawable/choice_week_fon" />
 
     <TextView
+        android:id="@+id/choice_week_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="@id/choice_week_fon"
-        app:layout_constraintEnd_toEndOf="@id/choice_week_fon"
+        app:layout_constraintTop_toTopOf="@id/choice_week_button"
+        app:layout_constraintEnd_toEndOf="@id/choice_week_button"
+        app:layout_constraintStart_toStartOf="parent"
         android:elevation="2dp"
         android:layout_marginEnd="10dp"
-        android:text="02.03-25.04"
-        android:textColor="@color/white"
-        android:textSize="25dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="@id/choice_week_fon"
-        app:layout_constraintStart_toStartOf="@id/choice_week_fon"
-        android:elevation="2dp"
-        android:layout_marginStart="19dp"
-        android:text="1 week"
+        android:text="02.03 - 25.04"
         android:textColor="@color/white"
         android:textSize="25dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,9 @@ import com.github.terrakok.cicerone.Router
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
+import kotlinx.android.synthetic.main.choice_week.*
 import kotlinx.android.synthetic.main.week_days_fragment.*
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -28,6 +30,7 @@ class WeekDaysFragment: Fragment() {
     private lateinit var weekDaysButton: ImageButton
     private val weekDaysAdapter = ItemAdapter<WeekDayItem>()
     private val fastAdapter = FastAdapter.with(weekDaysAdapter)
+    private var focusDate = Date()
 
     private val viewModel: WeekDayViewModel by lazy {
         ViewModelProvider(
@@ -64,6 +67,20 @@ class WeekDaysFragment: Fragment() {
         weekDaysButton.setOnClickListener {
             router.navigateTo(Screens.AllTasks(Date()))
         }
+
+        right_arrow.setOnClickListener {
+            val currCalendar = Calendar.getInstance().apply { time = focusDate }
+            currCalendar.set(Calendar.WEEK_OF_YEAR, currCalendar.get(Calendar.WEEK_OF_YEAR) + 1)
+            focusDate = currCalendar.time
+            viewModel.fetchDays(focusDate)
+        }
+
+        left_arrow.setOnClickListener {
+            val currCalendar = Calendar.getInstance().apply { time = focusDate }
+            currCalendar.set(Calendar.WEEK_OF_YEAR, currCalendar.get(Calendar.WEEK_OF_YEAR) - 1)
+            focusDate = currCalendar.time
+            viewModel.fetchDays(focusDate)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,6 +108,9 @@ class WeekDaysFragment: Fragment() {
             val state = week_days_recycler.layoutManager?.onSaveInstanceState()
             FastAdapterDiffUtil[weekDaysAdapter] = result
             week_days_recycler.layoutManager?.onRestoreInstanceState(state)
+            val firstDate = SimpleDateFormat("dd:MM", Locale.ENGLISH).format(days[0].date)
+            val secondDate = SimpleDateFormat("dd:MM", Locale.ENGLISH).format(days[6].date)
+            choice_week_text.text = "$firstDate : $secondDate"
         }
     }
 
@@ -102,7 +122,7 @@ class WeekDaysFragment: Fragment() {
     }
 
     private fun showTasksForDay(weekDayVo: WeekDayVo) {
-        router.navigateTo(Screens.AllTasks(Date()))
+        router.navigateTo(Screens.AllTasks(weekDayVo.date))
     }
 
     companion object {
