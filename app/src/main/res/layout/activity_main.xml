@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragment_container"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</FrameLayout>
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/eclip"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:elevation="2dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="199dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/eclipse"
+
+        />
+
+    <TextView
+        android:id="@+id/c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="185dp"
+        android:elevation="2dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/white"
+        tools:text="C" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="2dp"
+        android:text="34"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="175dp"
+
+        />
+    <ImageButton
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/notific"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="2dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="23dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/notepad"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="2dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="105dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/choice_week_fon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-1dp"
+        android:elevation="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/toolbar_draw" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/new_task_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
