@@ -1,7 +1,12 @@
 package com.example.tusk.presentation.feature.all_tasks
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
@@ -10,6 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tusk.R
 import com.example.tusk.presentation.MainApplication
+import com.example.tusk.presentation.feature.notifications.Receiver
 import com.example.tusk.presentation.feature.task_details.TaskDetailsDialogFragment
 import com.example.tusk.presentation.navigation.Screens
 import com.github.terrakok.cicerone.Router
@@ -26,6 +32,7 @@ import java.io.Serializable
 import java.util.*
 import javax.inject.Inject
 
+const val CHANNEL_ID = "Kukis"
 
 class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemSwipeCallback {
 
@@ -183,6 +190,33 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
 
         val taskVo = taskAdapter.itemList.items[result.pos].model
         viewModel.updateTask(taskVo, result.description, result.name, result.deadline)
+
+        val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val intent = Intent(context, Receiver::class.java)
+        intent.action = "MyBroadcastReceiverAction"
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val msUntilTriggerHour = result.deadline.time
+        Calendar.getInstance().apply { time = result.deadline }.get(
+            Calendar.MILLISECOND
+        ).toLong()
+        Log.d("Kek","${result.deadline.time}")
+
+        //val alarmClockInfo = AlarmManager.AlarmClockInfo(alarmTimeAtUTC,pendingIntent)
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(msUntilTriggerHour, pendingIntent),
+                pendingIntent
+            )
+        } else {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                msUntilTriggerHour,
+                pendingIntent
+            )
+        }
+
     }
 
 

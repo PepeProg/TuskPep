@@ -5,6 +5,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tusk.R
 import com.mikepenz.fastadapter.items.ModelAbstractItem
+import java.text.SimpleDateFormat
+import java.util.*
 
 class WeekDayItem(
     weekDayVo: WeekDayVo,
@@ -25,6 +27,7 @@ class WeekDayItem(
 
         holder.apply {
             title.text = model.name
+            weekDate.text = SimpleDateFormat("dd:MM:y", Locale.ENGLISH).format(model.date)
             itemView.setOnClickListener {
                 onClickListener(model)
             }
@@ -33,6 +36,7 @@ class WeekDayItem(
 
     class ViewHolder(weekDayView: View) : RecyclerView.ViewHolder(weekDayView) {
         val title: TextView = weekDayView.findViewById(R.id.week_title)
+        val weekDate: TextView = weekDayView.findViewById(R.id.week_date)
     }
 
     class DiffCallback : com.mikepenz.fastadapter.diff.DiffCallback<WeekDayItem> {
