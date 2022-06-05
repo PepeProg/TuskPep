@@ -47,7 +47,7 @@ class TaskDetailsDialogFragment : DialogFragment() {
 
         name_edit_text.setText(args.name)
         descr_edit_text.setText(args.description)
-        deadline_time_button.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+        deadline_time_text.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
             .format(deadline)
         submit_button.setOnClickListener {
             onSubmitClick()
@@ -95,7 +95,7 @@ class TaskDetailsDialogFragment : DialogFragment() {
                 set(Calendar.MINUTE, minute)
             }
             deadline = calendar.time
-            deadline_time_button.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
+            deadline_time_text.text = SimpleDateFormat("HH:mm", Locale.ENGLISH)
                 .format(deadline)
         }
     }
@@ -115,13 +115,14 @@ class TaskDetailsDialogFragment : DialogFragment() {
         window?.apply {
             setGravity(Gravity.TOP or Gravity.START)
             setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT
             )
         }
 
         params?.apply {
-            y = sourceY + dpToPx(50F)
+            x = dpToPx(37F)
+            y = dpToPx(250F)
             dimAmount = 0.10F
             flags = params.flags
                 .or(WindowManager.LayoutParams.FLAG_DIM_BEHIND)

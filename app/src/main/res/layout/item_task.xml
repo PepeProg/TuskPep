@@ -41,7 +41,6 @@
         android:fontFamily="@font/roboto"
         android:textColor="@color/black"
         android:singleLine="true"
-        tools:text="Навестить маму Макара"
         />
     <TextView
         android:id="@+id/end_date_week"

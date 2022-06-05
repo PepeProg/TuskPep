@@ -17,10 +17,10 @@ class Receiver : BroadcastReceiver() {
             Log.d("ALARM", "RECEIVED")
         }
 
-        var builder = NotificationCompat.Builder(context, CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.sun)
-            .setContentTitle("Why are you gay?")
-            .setContentText("Who says i'm gay?")
+            .setContentTitle("Hurry up!")
+            .setContentText("You have a task, which deadline is now!")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         with(NotificationManagerCompat.from(context)) {

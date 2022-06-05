@@ -30,11 +30,11 @@ class AllTasksViewModel(
         viewModelScope.launch {
             allTasksUseCases.saveTask(TaskVo(
                 id = UUID.randomUUID(),
-                title = "keke",
+                title = "New Task",
                 startDate = Date(),
                 endDate = currentDate,
                 priority = tasks.value!!.size,
-                description = "keke descr",
+                description = "",
             ))
             fetchTasks()
         }
