@@ -26,13 +26,16 @@ import com.mikepenz.fastadapter.drag.ItemTouchCallback
 import com.mikepenz.fastadapter.swipe.SimpleSwipeCallback
 import com.mikepenz.fastadapter.swipe_drag.SimpleSwipeDragCallback
 import com.mikepenz.fastadapter.utils.DragDropUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.all_tasks_fragment.*
 import java.io.Serializable
 import java.util.*
 import javax.inject.Inject
 
 const val CHANNEL_ID = "Kukis"
+
+/**
+ * Fragment, which is using to show the screen with all tasks, that person has in this day
+ */
 
 class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemSwipeCallback {
 
@@ -46,6 +49,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
     private lateinit var weekDaysButton: ImageButton
     private lateinit var currentDate: Date
 
+    //Class, that helps restore fragment's state
     private val viewModel: AllTasksViewModel by lazy {
         ViewModelProvider(
             this,
@@ -56,6 +60,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         )[AllTasksViewModel::class.java]
     }
 
+    //Adapter, combining all others
     private val taskAdapter = ItemAdapter<TaskItem>()
     private val fastAdapter = FastAdapter.with(taskAdapter)
 
@@ -113,6 +118,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
             adapter = fastAdapter
         }
 
+        //Callback for swiping and dragging
         val touchCallback = SimpleSwipeDragCallback(
             itemTouchCallback = this,
             itemSwipeCallback = this,
@@ -125,6 +131,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         observeTasks()
     }
 
+    //Observing livedata with callback, calling each time when posting new info
     private fun observeTasks() {
         viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
             add_task.isEnabled = true
@@ -140,11 +147,13 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         }
     }
 
+    //Dragging callback
     override fun itemTouchOnMove(oldPosition: Int, newPosition: Int): Boolean {
         DragDropUtil.onMove(taskAdapter, oldPosition, newPosition)
         return true
     }
 
+    //Swiping callback
     override fun itemSwiped(position: Int, direction: Int) {
         val taskVos = taskAdapter.itemList.items.map { taskItem ->
             taskItem.model
@@ -166,6 +175,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         )
     }
 
+    //Creating a dialog window after tap on task
     private fun showDetailsDialog(source: View, taskVo: TaskVo) {
         val args = TaskDetailsDialogFragment.Companion.Arguments(
             source = source,
@@ -185,6 +195,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
         )
     }
 
+    //Handling result from dialog window after it stops
     private fun handleResult(key: String, bundle: Bundle) {
         val result = bundle.getSerializable(REQUEST_KEY) as DetailsResult
 
@@ -230,6 +241,7 @@ class AllTasksFragment: Fragment(), ItemTouchCallback, SimpleSwipeCallback.ItemS
             }
         }
 
+        //Keys for dialog window
         private const val REQUEST_KEY = "request_key"
         private const val DATE_KEY = "date_key"
 

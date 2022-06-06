@@ -16,6 +16,10 @@ import java.util.*
 
 private const val TAG = "TaskDetailsFragment"
 
+/**
+ * Dialog fragment, which appears after click on task
+ */
+
 class TaskDetailsDialogFragment : DialogFragment() {
     private lateinit var source: View
     private lateinit var requestKey: String
@@ -84,6 +88,7 @@ class TaskDetailsDialogFragment : DialogFragment() {
         ).show()
     }
 
+    //TimeListener, which is using to choose time of deadline
     private inner class TimeListener: TimePickerDialog.OnTimeSetListener {
         override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
             val calendar = Calendar.getInstance()

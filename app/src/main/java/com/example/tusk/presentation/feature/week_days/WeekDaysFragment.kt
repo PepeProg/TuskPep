@@ -19,6 +19,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * Fragmnet, representing the list of days. You can tap on each of it and see tasks, according to
+ * the date
+ */
+
 class WeekDaysFragment: Fragment() {
     @Inject
     lateinit var weekDaysUseCases: WeekDaysUseCases

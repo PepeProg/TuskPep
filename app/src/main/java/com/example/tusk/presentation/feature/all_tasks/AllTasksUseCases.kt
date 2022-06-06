@@ -5,6 +5,11 @@ import com.example.tusk.presentation.feature.formatter.TaskFormatter
 import java.util.*
 import javax.inject.Inject
 
+
+/**
+ * Class, giving access to domain layer according to Clean-architecture
+ */
+
 class AllTasksUseCases @Inject constructor(
     private val taskFormatter: TaskFormatter,
     private val saveTaskUseCase: SaveTaskUseCase,

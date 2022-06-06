@@ -4,6 +4,10 @@ import androidx.room.*
 import com.example.tusk.data.dto.TaskDto
 import java.util.*
 
+/**
+ * Database interface
+ */
+
 @Dao
 interface TaskDao {
 

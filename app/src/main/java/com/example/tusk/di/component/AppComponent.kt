@@ -11,6 +11,10 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
+/**
+ * The main component. containing all functions, that allow us to inject dependencies
+ */
+
 @Singleton
 @Component(modules = [
     NavigationModule::class,

@@ -10,6 +10,10 @@ import com.mikepenz.fastadapter.swipe.ISwipeable
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Item, using in adapter to show a single task
+ */
+
 class TaskItem(
     task: TaskVo,
     private val onClickListener: (View, TaskVo) -> Unit,

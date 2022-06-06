@@ -6,6 +6,10 @@ import com.example.tusk.domain.entity.TaskEntity
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * Class, giving access to api of data layer
+ */
+
 class TaskRepository @Inject constructor(
     private val taskDbDataStore: TaskDbDataStore,
     private val taskDtoMapper: TaskDtoMapper

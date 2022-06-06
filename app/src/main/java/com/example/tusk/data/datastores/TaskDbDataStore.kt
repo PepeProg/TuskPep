@@ -5,6 +5,9 @@ import com.example.tusk.data.dto.TaskDto
 import java.util.*
 import javax.inject.Inject
 
+/**
+ * Api to database
+ */
 class TaskDbDataStore @Inject constructor(
     private val taskDao: TaskDao,
 ) {

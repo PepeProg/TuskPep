@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
+//We have access to this module from calling inject annos
+
 @Module
 class NavigationModule {
 
